@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase : {
+    apiKey: "AIzaSyC-N9ALvJ0VJifGLkMyJPfA6gc956LL5JA",
+    authDomain: "mountaineering-firebase.firebaseapp.com",
+    databaseURL: "https://mountaineering-firebase.firebaseio.com",
+    projectId: "mountaineering-firebase",
+    storageBucket: "mountaineering-firebase.appspot.com",
+    messagingSenderId: "781281902298",
+    appId: "1:781281902298:web:e9cab033b571cb934cafe3",
+    measurementId: "G-XXMH3FCFKX"
+  }
 };
 
 /*
