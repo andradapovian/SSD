@@ -1,0 +1,40 @@
+
+
+<div class="w3-light-grey">
+
+
+
+  <div class="w3-light-grey w3-content w3-main" style="margin-left:250px" >
+      <button class="w3-button">
+          <a routerLink="/events/add">Add Event</a>
+      </button>
+    
+  
+  
+    <div class="w3-row-padding">
+        
+        <span *ngFor="let e of eventlist">
+            
+            <!-- <a routerLink="/description/{{event.id}}"> -->
+                <span><div class="w3-third w3-container w3-margin-bottom " style="width:100%">
+                   
+                    <div class="w3-container w3-white" >
+                      <a class="col s1" (click)="removeEvent(e)">x</a>
+                      <p><b>Event Name: {{e.payload.doc.data().eName}} </b></p>
+                      <p>Location: {{e.payload.doc.data().location}}</p>
+                      <p> {{e.payload.doc.data().details}}</p>
+                      <p>Start date: {{e.payload.doc.data().startDate}}</p>
+                      <p>End date: {{e.payload.doc.data().endDate}}</p>
+                    </div>
+                  
+                
+                </div>
+              </span>
+            <!-- </a> {{event.startDate | date: 'mediumDate'}}-->
+          </span>
+  
+      
+      
+    </div>
+    
+  </div>

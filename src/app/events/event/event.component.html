@@ -1,0 +1,56 @@
+<!-- <h1 class="display-4">EVENT REGISTER</h1>
+<form #form="ngForm" autocomplete="off">
+    <div class="form-group">
+        <input type="text" name="eName" #eName="ngModel" [(ngModel)]="service.formData.eName" class="form-control" placeholder="Event Name" required>
+        <div *ngIf="eName.invalid && eName.touched" class= "validation-error"> This field is required</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="location" #location="ngModel" [(ngModel)]="service.formData.location" class="form-control" placeholder="Location Name" required>
+    </div>
+
+    <div class="form-group">
+        <input type="date" name="startDate" #startDate="ngModel" [(ngModel)]="service.formData.startDate" class="form-control" placeholder="Start Date" required>
+    </div>
+    
+    <div class="form-group">
+        <input type="date" name="endDate" #endDate="ngModel" [(ngModel)]="service.formData.endDate" class="form-control" placeholder="End Date" required>
+    </div>
+    
+    <div class="form-group">
+        <input type="text" name="details" #details="ngModel" [(ngModel)]="service.formData.details" class="form-control" placeholder="Details">
+    </div>
+
+    <div class="form-group"> 
+        <button type="submit" class="btn btn-lg btn-block btn-info"> 
+            SUBMIT
+        </button>
+    </div>
+</form> -->
+
+<form [formGroup]="this.service.form" (ngSubmit)="onSubmit()">
+    <input placeholder="Name" 
+           formControlName="eName" 
+           type="text" 
+           class="input-field col s12">
+    <input placeholder="Location" 
+           formControlName="location" 
+           type="text" 
+           class="input-field col s12">
+    <input placeholder="startDate" 
+           formControlName="startDate" 
+           type="date" 
+           class="input-field col s12">
+    <input placeholder="endDate" 
+           formControlName="endDate" 
+           type="date" 
+           class="input-field col s12">
+    <input placeholder="details" 
+           formControlName="details" 
+           type="text" 
+           class="input-field col s12">
+    <button class="waves-effect waves-light btn col s12" 
+           (click)="onSubmit()">
+      Submit
+    </button>
+</form>
