@@ -6,6 +6,7 @@ import { EventsComponent } from './events/events.component';
 import { EventAddComponent } from './events/event-add/event-add.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AuthGuardGuard } from './auth/auth-guard.guard';
 
 
 const routes: Routes = [
@@ -13,10 +14,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'events', component: EventsComponent},
-  { path: 'events/add', component: EventAddComponent},
-  { path: 'logout', component: LogoutComponent},
-  { path: 'file-upload', component: FileUploadComponent }
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuardGuard]},
+  { path: 'events/add', component: EventAddComponent, canActivate: [AuthGuardGuard]},
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardGuard]},
+  { path: 'file-upload', component: FileUploadComponent, canActivate: [AuthGuardGuard] }
 ];
 
 @NgModule({

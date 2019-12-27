@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private service: LoginService,
-    
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -26,11 +27,13 @@ export class LoginComponent implements OnInit {
   loginFacebook() {
     console.log('login..');
     this.service.loginFacebook();
+    this.router.navigate(['/events']);
   }
  
   loginGoogle(){
     console.log('login..');
     this.service.loginGoogle();
+    this.router.navigate(['/events']);
   }
 
   logout(){

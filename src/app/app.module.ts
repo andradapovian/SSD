@@ -23,6 +23,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileSizePipe } from './file-size.pipe';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AuthGuardGuard } from './auth/auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AngularFireStorageModule,
     
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

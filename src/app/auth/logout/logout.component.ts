@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -11,7 +12,8 @@ export class LogoutComponent implements OnInit {
   user: firebase.User;
 
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ){}
 
   ngOnInit() {
@@ -23,5 +25,6 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+    this.router.navigate(['/home']);
   }
 }
