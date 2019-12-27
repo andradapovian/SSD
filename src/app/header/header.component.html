@@ -1,19 +1,19 @@
 <div class="w3-display-container" >
-        <img src="assets/img/Panorama_tatier.jpg" style="width:100%">
+        <img src="https://homes.cs.washington.edu/~aditya/files/photos/pano/mountains.jpeg" style="width:100%">
         <div class="w3-display-bottomleft w3-container w3-amber"
          style="bottom:10%;opacity:0.7;width:70%">
         <h1>Mountain Lovers</h1>
        </div>
       </div>
 <ul>
-  <li><a routerLink="/home">Home</a></li>
-  <li ><a  routerLink="/events" >Events</a></li>
-  <li  style="float:right"><a  routerLink="/login">Login</a></li>
-  <li  style="float:right"><a  >LogOut</a></li>
+  <li ><a routerLink="/home">Home</a></li>
+  <li ><a *ngIf= "user" routerLink="/events" >Events</a></li>
+  <li ><a *ngIf= "user" routerLink="/file-upload" >Contest</a></li>
+  <li  style="float:right"><a *ngIf= "!user" routerLink="/login">Login</a></li>
+  <li   style="float:right"><a *ngIf= "user" routerLink="/logout" >LogOut</a></li>
 
-  <!--*ngIf=logged()  *ngIf="!user"
+  <!--*ngIf = "isloggedin()" *ngIf = "loggedin()"  *ngIf="!user"
     <li style="float:right"><a  >Register</a></li>
   routerLink="/register"
   routerLink="/logout" -->
 </ul>
-

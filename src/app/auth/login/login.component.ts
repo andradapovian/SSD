@@ -8,7 +8,7 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: firebase.User;
+  public user: firebase.User;
 
   constructor(
     private service: LoginService,
@@ -23,9 +23,14 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  loginFacebook() {
+    console.log('login..');
+    this.service.loginFacebook();
+  }
+ 
   loginGoogle(){
     console.log('login..');
-    this.service.login();
+    this.service.loginGoogle();
   }
 
   logout(){

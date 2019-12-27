@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Event} from 'src/app/events/shared/event.model';
 import {EventService} from 'src/app/events/shared/event.service';
-
+import {map} from 'rxjs/operators';
+  
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -9,37 +10,45 @@ import {EventService} from 'src/app/events/shared/event.service';
 })
 export class EventListComponent implements OnInit {
 
-  
-  // events: Event[];
+ events: Event[];
+ editState: boolean = false;
+ eventToEdit: Event;
 
-  //constructor(private eventService: EventService) { }
-  
+ constructor(private eventService: EventService){}
 
-  // ngOnInit() {
-    
-  //   this.eventService.getEvents().subscribe(data => {
-  //     this.events = data.map(e => {
-  //       return{
-  //         id: e.payload.doc.id,
-  //       //  ...e.payload.doc.data()
+ ngOnInit(){
+   this.getEventsList();
+ }
 
-  //       }as Event;
-  //     })
-  //   });
-  // }
+ getEventsList(){
+   this.eventService.getEventsList()
+   .subscribe(
+     data => {
+       this.events = data.map((e:any) =>{
+         return {
+           id: e.payload.doc.id, ...e.payload.doc.data()
+         } as Event;
+       })
+     });
+ }
 
-  constructor(private eventService: EventService) { }
+ editEvent(eventu, event: Event){
+   this.editState = true;
+   this.eventToEdit = event
+ }
 
-  ngOnInit(){this.getEvents();}
+ clearState() {
+  this.editState = false;
+  this.eventToEdit = null;
+}
 
-  eventlist;
-
-  getEvents = () =>
-  this.eventService
-  .getEvents()
-  .subscribe(res => (this.eventlist = res));
-
-  removeEvent = data =>{
-    this.eventService.deleteEvent(data)
+  updateEvent(event: Event, id: string)  {
+    this.eventService.updateEvent(event, id);
+    this.clearState();
   }
+
+  deleteEvent(id: string){
+    this.eventService.deleteEvent(id);
+  }
+
 }

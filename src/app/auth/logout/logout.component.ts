@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../auth/login.service';
-
+import { LoginService } from '../login.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class HeaderComponent implements OnInit {
-  
+export class LogoutComponent implements OnInit {
+
   user: firebase.User;
 
   constructor(
@@ -25,8 +24,4 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
-
-  
- 
-
 }

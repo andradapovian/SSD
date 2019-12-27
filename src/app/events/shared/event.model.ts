@@ -1,6 +1,6 @@
 export class Event {
-    id: string;
-    eName: string;
+    key: string;
+    name: string;
     location: string;
     startDate: Date;
     endDate: Date;

@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
-import { first } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+
   constructor(
     private afAuth: AngularFireAuth
   ) { }
 
-  login(){
+  
+
+  loginGoogle(){
+
     console.log('Redirecting to Google');
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider)
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider);
+    
+  }
+
+  loginFacebook(){
+    console.log('Redirecting to Faceboo');
+    this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider);
   }
 
   getLoggedInUser(){

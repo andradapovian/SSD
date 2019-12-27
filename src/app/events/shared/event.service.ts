@@ -2,46 +2,32 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {Event} from './event.model';
 import {FormControl, FormGroup} from '@angular/forms';
+import { firestore } from 'firebase';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
+ 
+  private dbPath = '/events';
 
-  //formdData: Event;
+  constructor( private db: AngularFirestore) {  }
 
-  constructor(private firestore: AngularFirestore) { }
-
-  form = new FormGroup({        
-    eName: new FormControl(''),
-    location: new FormControl(''),
-    startDate: new FormControl(''), 
-    endDate: new FormControl(''),
-    details: new FormControl(''),
-    completed: new FormControl(false)
-})
-
-  getEvents(){
-  
-    return this.firestore.collection('events').snapshotChanges();
+  getEventsList(){
+    return this.db.collection('events').snapshotChanges();
   }
 
-  createEvent(data){
-    return new Promise<any> ((resolve, reject) =>{
-      this.firestore
-          .collection("events")
-          .add(data)
-          .then(res => {}, err => reject(err));
-    });
-   // return this.firestore.collection('events').add(event);
+  addEvent(event: Event): void {
+    this.db.collection('events').add(Object.assign(event));
+  }
+ 
+  updateEvent(event: Event, id: string) {
+   this.db.doc('events/'+id).update(event);
   }
 
-  updateEvent(event: Event){
-    delete event.id;
-    this.firestore.doc('events/' + event.id).update(event);
+  deleteEvent(id: string){
+    this.db.doc('events/' + id).delete();
   }
 
-  deleteEvent(eventId: string){
-    this.firestore.doc('events/' + eventId).delete();
-  }
 }
