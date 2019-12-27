@@ -23,8 +23,14 @@ export class AuthGuardGuard implements CanActivate, OnInit  {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+      this.loginService.getLoggedInUser()
+    .subscribe(user => {
+      this.user = user;
+    })
       if(this.user)
-        return true;
+        { console.log('access granted');
+          return true;}
       
       console.log('access denied!')
       this.router.navigate(['/login']);
